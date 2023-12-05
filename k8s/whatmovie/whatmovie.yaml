@@ -27,6 +27,6 @@ spec:
       - name: whatmovie
         image: debian
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "apt update -y && apt install netcat-openbsd curl -y && curl https://gist.githubusercontent.com/obluff/148898b3fc2885a425b3ae10d9ef9555/raw/8d00d8e057f2e19f76e671e06eb017edcc70a263/hahaha > movies && while true; do { echo -e 'HTTP/1.1 200 OK\r\n'; cat movies | shuf -n 1 ; } | nc -l -q 0 0.0.0.0 1500; done" ]
+        args: [ "apt update -y ; apt install netcat-openbsd curl -y ; curl https://gist.githubusercontent.com/obluff/148898b3fc2885a425b3ae10d9ef9555/raw/8d00d8e057f2e19f76e671e06eb017edcc70a263/hahaha > movies ; while true; do { echo -e 'HTTP/1.1 200 OK\r\n'; cat movies | shuf -n 1 ; } | nc -l -q 0 0.0.0.0 1500; done" ]
         ports:
         - containerPort: 1500

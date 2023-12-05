@@ -4,7 +4,7 @@ just having fun with digitalocean managed k8s :D
 
 ## sites
 
-- [what movie](whatmovie.tehjoker.com)
+- [what movie](http://whatmovie.tehjoker.com)
     - my girlfriend and i can never decide on movies
 
 
