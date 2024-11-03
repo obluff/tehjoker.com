@@ -14,4 +14,15 @@ spec:
               name: whatmovie
               port:
                 number: 80
+  - host: "exotics.tehjoker.com"
+    http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: exotics
+              port:
+                number: 80
+
   ingressClassName: nginx

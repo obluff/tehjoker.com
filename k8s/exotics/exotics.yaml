@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: exotics
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: exotics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exotics
+spec:
+  selector:
+    matchLabels:
+      app: exotics
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: exotics
+    spec:
+      containers:
+      - name: exotics
+        image: registry.digitalocean.com/regerist/exotics:latest
+        ports:
+        - containerPort: 80
