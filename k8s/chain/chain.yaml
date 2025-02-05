@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: chain
+spec:
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: chain
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chain
+spec:
+  selector:
+    matchLabels:
+      app: chain
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: chain
+    spec:
+      containers:
+      - name: chain
+        image: registry.digitalocean.com/regerist/chain:latest
+        ports:
+        - containerPort: 5000

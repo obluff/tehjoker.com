@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: post-request-cronjob
+spec:
+  schedule: "*/5 * * * *"  # Runs every 5 minutes
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: curl-container
+            image: curlimages/curl:latest  # Uses a lightweight curl image
+            command:
+            - /bin/sh
+            - -c
+            - |
+              curl -X POST http://chain/produce_block \
+                -H "Content-Type: application/json" \
+                -d '{}'
+          restartPolicy: OnFailure

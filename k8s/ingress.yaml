@@ -24,5 +24,16 @@ spec:
               name: exotics
               port:
                 number: 80
+  - host: "chain.tehjoker.com"
+    http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: chain
+              port:
+                number: 80
+
 
   ingressClassName: nginx
