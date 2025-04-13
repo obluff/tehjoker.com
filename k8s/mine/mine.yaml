@@ -1,0 +1,64 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: minecraft-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mine 
+  labels:
+    app: mine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mine
+  template:
+    metadata:
+      labels:
+        app: mine
+    spec:
+      containers:
+      - name: mine
+        image: itzg/minecraft-server
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+        env:
+        - name: EULA
+          value: "TRUE"
+        volumeMounts:
+        - name: data
+          mountPath: /data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: minecraft-pvc
+---
+
+# Creating separate load balancer + manual dns records.
+# TODO determine if it's possible to route to this service via nginx.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mine
+  labels:
+    app: mine
+spec:
+  type: LoadBalancer
+  selector:
+    app: mine
+  ports:
+    - port: 25565
+      protocol: TCP
+      targetPort: 19132
