@@ -6,7 +6,7 @@ just having fun with digitalocean managed k8s :D
 
 - [what movie](http://whatmovie.tehjoker.com)
     - my girlfriend and i can never decide on movies
-- mine: [mine](mine.tehjoker.com)
+- [mine](http://mine.tehjoker.com)
     - landing page for vanilla minecraft server hosted on `server.tehjoker.com`
 
 
