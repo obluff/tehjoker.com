@@ -12,5 +12,5 @@ just having fun with digitalocean managed k8s :D
 
 ## todo 
 
-- [ ] certs
+- [x] certs
 - [ ] helm (or something similar)
